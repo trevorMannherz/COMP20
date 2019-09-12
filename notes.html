@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Notes</title>
+
+</head>
+
+<body>
+  <!-- 
+  There's different methods and actions with tradeoffs, make sure there's proper handshake with backend.
+  Need action in order to store data
+  Name and ID used by different things, to be safe set both to same name
+  Use classes to simplify styling for labels and inputs
+  
+  -->
+  <form method="get" action="">
+    <div class='col1'>name:</div>
+    <div class='col2'>
+      <input type='text' name='name' id='name'>
+    </div>
+    <div class='col1'>type of pet:</div>
+    <div class='col2'>
+      Dog <input type='radio' name='pet' id='pet' class='petType' value='Dog'><br />
+      Cat <input type='radio' name='pet' id='pet' class='petType' value='Cat'><br />
+      Snake <input type='radio' name='pet' id='pet' class='petType' value='Snake'><br />
+      Fish <input type='radio' name='pet' id='pet' class='petType' value='Fish'><br />
+    </div>
+   </form>
+</body>
+</html>
