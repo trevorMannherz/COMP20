@@ -1,0 +1,179 @@
+<!-- HTML5
+
+Originally for "catalog" type markup
+Enhanced mobile development ***
+Can be reached by people with or without internet
+Can save important data dto databases locally
+Graphics and visual effects (no more Flash) ***
+Integration with CSS
+Video and Audio support
+See diagram in notes
+Section: Generic section
+Article: Particular piece of information
+Aside: slightly related to rest of content
+Deprecated Tags: font, center, b, i, u, frame, frameset, applet, marquee
+				 bgsound, noscript
+Forms: Date and time, number, range, Email, URL, output
+<!DOCTYPE html>
+Nav typically done with <ul> unordered list
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
+	<title>
+		Example
+	</title>
+	<style>
+		body,html {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			height: 100%;
+		}
+		input[type='submit'] {
+			background-color: #403332;
+			color: #ffffff;
+			border: none;
+			padding: 5px 20px;
+		}
+		header h1{
+			text-align: center;
+			color: #ffffff;
+			font-family: 'Courgette', cursive;
+			text-shadow: 2px 2px #000;
+		}
+		header {
+			background-color: #878787;
+			padding: 20px 0;
+			width: 100%;
+		}
+		nav {
+			width: 100%;
+			display: inline-block;
+			background-color: #f04fe2;
+			color: #000;
+			font-size: 17px;
+			border-color: #878787;
+			border-style: solid;
+			border-width: 0 0 5px 0;
+			padding: 10px 0;
+		}
+		nav ul {
+			list-style-type: none;
+			margin: 5px 0;
+		}
+		/*figure out how to stretch across width*/
+		nav ul li {
+			display: inline;
+		}
+		nav a {
+			width: 17%;
+			text-align: center;
+			display: inline-block;
+			font-family: Cambria;
+			color: #000;
+			text-decoration: none;
+		}
+		li form {
+			display: inline;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		article h3 {
+			font-family: 'Courgette', cursive;
+		}
+		aside {
+			float: right;
+			width: 30%;
+			height: 100%;
+			padding: 0 10px 30px 10px;
+			background-color: #f04fe2;
+			border-color: #878787;
+			border-style: solid;
+			border-width: 0 0 0 5px;
+		}
+		h1 {
+			text-align: center;
+			font-family: 'Courgette', cursive;
+		}
+		aside li {
+			color: #00f;
+			text-decoration: underline;
+		}
+		article {
+			height: auto;
+		}
+		footer {
+			position: relative;
+			border-color: #878787;
+			border-style: solid;
+			border-width: 5px 0 0 0;
+			width: 100%;
+			bottom: 0;
+			height: 30px;
+			display: inline-block;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<h1> Header </h1>
+</header>
+<nav>
+ 	<ul>
+ 		<li><a href="#">Home</a></li>
+ 		<li><a href="#">Our Team</a></li>
+ 		<li><a href="#">Projects</a></li>
+ 		<li><a href="#">Contact</a></li>
+ 		<li><form>
+ 			<input type="text" name="Search" placeholder="Search query">
+ 			<input type="submit" name="Search" value='GO!'>
+ 		</form></li>
+ 	</ul>
+</nav>
+<aside>
+	<h1>Related</h1>
+	<ul>
+		<li>
+			Oh I do like to be beside the seaside
+		</li>
+		<li>
+			Oh I do like to be beside the seaside
+		</li>
+		<li>
+			Although in the North of England
+		</li>
+		<li>
+			It never stops raining
+		</li>
+		<li>
+			Oh well...
+		</li>
+	</ul>
+	<p>
+		Here is an aside - it might be styles to be placed as a sidebar
+	</p>
+</aside>
+<article>
+	<h1>Article heading</h1>
+	<p>
+		There can be sections within an article
+	</p>
+	<section>
+		<h3>subsection</h3>
+		Donec ut librero...
+	</section>
+	<section>
+		<h3>Another subsection</h3>
+		Donec viverra mi quis...
+	</section>
+</article>
+<footer>
+	Copyright &copy Trevor Mannherz Inc. All Rights Reserved
+</footer>
+</body>
+</html>
