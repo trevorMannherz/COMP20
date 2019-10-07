@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style type="text/css">
+            body {
+                text-align: center;
+                font-family: sans-serif;
+            }
+            div#result {
+                display: inline-block;
+                border-width: 0;
+                font-family: sans-serif;
+            }
+            div#header {
+                display: inline-block;
+            }
+        </style>
+<meta charset="utf-8">
+<title>Lottery Day</title>
+</head>
+<body>
+    <div id="header">Check out our other site, </div>
+    <a href="hotdogs.html">Joe's Hotdogs!</a>
+    <h1> Lottery day </h1>
+    <script language="javascript" type="text/javascript">
+        numbers = new Array();
+        document.write("Today's numbers: ");
+        for(i = 0; i < 5; i++) {
+            currNum = Math.round(Math.random() * 48 + 1);
+            while(numbers.includes(currNum)) {
+                currNum = Math.round(Math.random() * 48 + 1);
+            }
+            numbers.push(currNum);
+        }
+        for(i = 0; i < numbers.length; i++) {
+            document.write(numbers[i] + " ");
+        }
+        var currNum = Math.round(Math.random() * 18 + 1);
+        document.write(currNum + "<br>");
+        numbers.push(currNum);
+
+        sortedNumbers = Array.from(numbers);
+        sortedNumbers = sortedNumbers.sort(function(a, b){return a - b});
+        document.write("Those numbers sorted are: ");
+        for(var i = 0; i < sortedNumbers.length; i++) {
+            document.write(sortedNumbers[i] + " ");
+        }
+
+        function calcPayout() {
+            ballNums = document.getElementById('ballNums').value;
+            luckyNum = document.getElementById('luckyNum').value;
+            balls = ballNums.split(" ");
+            var numMatches = 0;
+            var luckyMatch = (luckyNum == numbers[5]);
+            for(var i = 0; i < 5; i++) {
+                if(balls[i] == numbers[i])
+                    numMatches++;
+            }
+            payout = "Nothing!"
+            if(numMatches == 5 && luckyMatch)
+                payout = "$7,000 a WEEK for LIFE!";
+            else if(numMatches == 5 && !luckyMatch)
+                payout = "$25,000 a YEAR for LIFE!";
+            else if(numMatches == 4 && luckyMatch)
+                payout = "$5,000";
+            else if(numMatches == 4 && !luckyMatch)
+                payout = "$200";
+            else if(numMatches == 3 && luckyMatch)
+                payout = "$150";
+            else if(numMatches == 3 && !luckyMatch)
+                payout = "$20";
+            else if(numMatches == 2 && luckyMatch)
+                payout = "$25";
+            else if(numMatches == 2 && !luckyMatch)
+                payout = "$3";
+            else if(numMatches == 1 && luckyMatch)
+                payout = "$6";
+            else if(numMatches == 0 && luckyMatch)
+                payout = "$4";
+            document.getElementById("result").innerHTML = payout;
+        }
+	</script>
+	<form>
+		5 normal ball numbers (separate by space): <input type='text' id='ballNums' value=''> <br>
+		1 lucky ball number: <input type='text' id='luckyNum' value=''> <br>
+		<input type="button" onclick="calcPayout()" value="Calculate Payout"> <br>
+        <br>
+        Payout: 
+        <div value="" id="result">
+        </div>
+	</form>
+</body>
+</html>
