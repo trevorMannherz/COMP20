@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+        input[type=number] {
+            width: 40px;
+        }
+        div#header {
+            display: inline-block;
+        }
+    </style>
+    <meta charset="utf-8">
+    <title>Joe's Hotdogs</title>
+</head>
+<body>
+    <div id="header">Check out our other sites: </div>
+    <a href="assignment4a.html">Lottery Day!</a>
+    <h1> Joe's Hotdogs </h1>
+    <script language="javascript" type="text/javascript">
+        menu = {hotdog: 3.25, fries: 2.00, drinks: 1.50};
+        order = {numHotdogs: 0, numFries: 0, numDrinks: 0};
+        var tax = 0.0625;
+        var joesSpecial = 0.10
+
+        function printOrder() {
+            order['numHotdogs'] = document.getElementById('numHotdogs').value;
+            order['numFries'] = document.getElementById('numFries').value;
+            order['numDrinks'] = document.getElementById('numDrinks').value;
+            var subtotal = order['numHotdogs'] * menu['hotdog'] +
+                           order['numFries'] * menu['fries'] +
+                           order['numDrinks'] * menu['drinks'];
+            var price = 0;
+            var discount = 0;
+            var taxPaid = 0;
+            if(subtotal > 20) {
+                discount = subtotal * joesSpecial;
+            }
+            taxPaid = subtotal * tax;
+            price = subtotal + taxPaid - discount;
+            price = price.toFixed(2);
+            discount = discount.toFixed(2);
+            taxPaid = taxPaid.toFixed(2);
+
+            alert("Order Summary:\n" + "Hotdogs ordered: " + order['numHotdogs'] + 
+                  "\nFries ordered: " + order['numFries'] + "\nDrinks ordered: " + 
+                  order['numDrinks'] + "\n\nSubtotal: $" + subtotal + 
+                  "\nDiscount: $" + discount + "\nTax paid: $" + taxPaid + 
+                  "\nFinal Total: $" + price);
+        }
+
+	</script>
+	<form>
+		Number of hotdogs ($3.25): <input type='number' step='1' id='numHotdogs' value='0' min='0'> <br>
+        Number of fries orders ($2.00): <input type='number' step='1' id='numFries' value='0' min='0'> <br>
+        Number of drinks ($1.50): <input type='number' step='1' id='numDrinks' value='0' min='0'> <br>
+		<input type="button" onclick="printOrder()" value="Order">
+	</form>
+</body>
+</html>
