@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../jquery/jquery-3.4.1.js"></script>
+    <style type="text/css">
+        body,html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100%;
+        }
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+        img {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+        }
+        div {
+            display: flex;
+            font-size: 18pt;
+            width: auto;
+        }
+        ul {
+            display: flex;
+            list-style-type: none;
+            margin-right: auto;
+            margin-left: auto;
+            width: fit-content;
+        }
+        li {
+            display: inline;
+            margin: 0 50px;
+        }
+        span {
+            display: none;
+            width: 200px;
+            height: 200px;
+            background-color: #e6e1e1;
+            color: #000;
+            font-family: sans-serif;
+            font-size: 15pt;
+        }
+        div#large {
+            background-color: #fff;
+        }
+        img#largeimg {
+            display: inline;
+            text-align: center;
+            width: 600px;
+            height: 600px;
+            margin: 50px auto 0 auto;
+            display: none;
+        }
+    </style>
+    <script>
+    class art {
+        constructor(name, price, img) {
+            this.name = name;
+            this.price = price;
+            this.img = new Image();
+            this.img.src = img;
+        }
+    }
+    $(document).ready(function() {
+        art1 = new art("New Jack", "$200", "pic1.jpg");
+        art2 = new art("Glacier", "$4000", "pic2.jpg");
+        art3 = new art("Big Kahuna", "$5", "pic3.jpg");
+        art4 = new art("Paint it White", "$30", "pic4.jpg");
+        art5 = new art("Deep Galaxy", "$100", "pic5.jpg");
+        var gallery = new Array(art1, art2, art3, art4, art5);
+        for(var i = 0; i < gallery.length; i++) {
+            elem = "li#" + i;
+            $(elem).html('<span>' + gallery[i].name + '<br />' + gallery[i].price + '</span><img src="' + gallery[i].img.src + '"">');
+        }
+    });
+    $(function() {
+        $('img').on('mouseenter', function() {
+            $('div#large').html('<img id="largeimg" src="' + $(this).attr('src') + '"">');
+            $('img#largeimg').fadeIn("fast");
+        }).on('mouseleave', function() {
+            $('img#largeimg').fadeOut();
+        });
+    });
+    $(function() {
+        $('li').click(function() {
+            var src = $(this).attr('src');
+            $(this).find('span').show(0).delay(5000).hide(0);
+            $(this).find('img').hide(0).delay(5000).show(0);
+        });
+    });
+    </script>
+<meta charset="utf-8">
+<title>Gallery</title>
+</head>
+<body>
+    <h1> My Gallery  </h1>
+    <ul id='gallery'>
+        <li id='0'></li>
+        <li id='1'></li>
+        <li id='2'></li>
+        <li id='3'></li>
+        <li id='4'></li>
+    </ul>
+    <div id='large'>
+    </div>
+</body>
+</html>
