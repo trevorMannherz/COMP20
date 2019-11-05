@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style type="text/css">
+            ul {
+                list-style-type: none;
+            }
+            li {
+                float: left;
+                width: 100%;
+                margin-top: 10px;
+            }
+            form {
+            }
+        </style>
+        <script type="text/javascript" src="setlist.json"></script>
+<meta charset="utf-8">
+<title>Amicable?</title>
+</head>
+<body>
+    <h1>Band</h1>
+    <div id='serial'>
+    </div>
+    <ul id='setlist'>
+        <h4>My Band's Setlist:</h4>
+    </ul>
+    <form>
+        <select id='selectGenre'>
+        </select>
+    <script>
+        class Song {
+            constructor(title, artist, genre, year) {
+                this.title = title;
+                this.artist = artist;
+                this.genre = genre;
+                this.year = year;
+            }
+        }
+
+        var mysetlist = JSON.parse(setlist);
+        document.getElementById('serial').innerHTML = JSON.stringify(mysetlist) + "<br>";
+        var setlist = [];
+        for (var key in mysetlist) {
+            var currSong = new Song(mysetlist[key]["Title"], mysetlist[key]["Artist"], mysetlist[key]["Genre"], mysetlist[key]["Year"]);
+            setlist.push(currSong);
+        }
+        var htmlSetlist = document.getElementById("setlist");
+        for(var i = 0; i < setlist.length; i++) {
+            var html = '<span><b>' + setlist[i].title + '</b><br />Artist: ' + setlist[i].artist + '<br>Genre: ' + setlist[i].genre + '<br>Released ' + setlist[i].year + '</span>';
+            var elem = document.createElement("li");
+            var id = "song" + i;
+            elem.setAttribute("id", id);
+            htmlSetlist.appendChild(elem);
+            document.getElementById(id).innerHTML = html;
+        }
+        var select = document.getElementById("selectGenre");
+        var options = [];
+        var genres = [];
+
+        for(var i = 0; i < setlist.length; i++) {
+            for(var j = 0; j < setlist[i].genre.length; j++) {
+                var currGenre = setlist[i].genre[j].toString();
+                if (!(genres.includes(currGenre.toString()))) {
+                    genres.push(currGenre);
+                    var elem = document.createElement("option");
+                    elem.textContent = currGenre;
+                    select.appendChild(elem);
+                }
+            }
+        }
+        function populateGenre() {
+            var genre = document.getElementById("selectGenre");
+            var genre = genre.options[genre.selectedIndex].text;
+            var list = document.getElementById("selectedGenre");
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
+            for(var i = 0; i < setlist.length; i++) {
+                for(var j = 0; j < setlist[i].genre.length; j++) {
+                    var currGenre = setlist[i].genre[j].toString();
+                    if(currGenre == genre) {
+                        var elem = document.createElement("li");
+                        var html = '<span><b>' + setlist[i].title + '</b><br />Artist: ' + setlist[i].artist + '<br>Genre: ' + setlist[i].genre + '<br>Released ' + setlist[i].year + '</span>';
+                        var id = "li" + i;
+                        elem.setAttribute("id", id);
+                        list.appendChild(elem);
+                        document.getElementById(id).innerHTML = html;
+                    }
+                }
+            }
+        }
+
+    </script>
+    <input type="button" onclick="populateGenre()" value="Filter"> <br>
+    </form>
+    <ul id='selectedGenre'>
+    </ul>
+</body>
+</html>
