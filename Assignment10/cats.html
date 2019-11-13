@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style type="text/css">
+        	body {
+        		background-color: #FFA500;
+        	}
+        	div {
+        		margin-bottom: 20px;
+        		background-color: #434343;
+        		color: #fff;
+        	}
+        </style>
+        <script type="text/javascript">
+        	function getCatFact() {
+        		var request = new XMLHttpRequest();
+        		console.log("1 - request object created");
+
+        		request.open('GET', 'https://cors-anywhere.herokuapp.com/https://cat-fact.herokuapp.com/facts');
+
+        		request.setRequestHeader('Content-Type', 'application/json');
+        		console.log("2 - opened request file");
+
+        		request.onreadystatechange = function () {
+        			console.log("3 - readystatechange event fired.");
+					if (this.readyState === 4 && this.status === 200) {
+						console.log('Status:', this.status);
+						console.log('Headers:', this.getAllResponseHeaders());
+						console.log('Body:', this.responseText);
+						facts = JSON.parse(this.responseText);
+					    var numFacts = Object.keys(facts["all"]).length;
+						random = Math.floor(Math.random() * numFacts);
+						fact = facts["all"][random].text;
+						document.getElementById("data").innerHTML = fact; 
+					}
+        		};
+
+        		request.send();
+				console.log("4 - Request sent");
+        	}
+        </script>
+<meta charset="utf-8">
+<title>Cat Facts</title>
+</head>
+<body onload="getCatFact()">
+	<h1>
+		Random cat fact for you:
+	</h1>
+ 	<div id="data">Loading...</div>
+
+ 	<div>
+ 		I used the Cat facts API which gives a bunch of cat facts and also lets you send facts to your friends and look at user data so long as you are logged in on your account. <br><br>
+ 		I found it on this website: https://alexwohlbruck.github.io/cat-facts/?ref=apilist.fun <br><br>
+ 		I used the facts option on the API request which just returns cat fact info. <br><br>
+ 		This API could have a use on a website for kids where you want to provide random fun facts about animals, and the one for cats specifically could pull from this API.<br><br>
+ 		This API could also be used on a website which sells cat products and could have a section with cat fun fact of the day which pulls from this API.
+	</div>
+
+</body>
+</html>
